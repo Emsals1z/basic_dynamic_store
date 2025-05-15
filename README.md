@@ -1,0 +1,1 @@
+This is a simple and dynamic PHP website designed for product purchasing with an integrated admin panel. It allows users to browse and buy products easily, while the admin panel provides tools to manage products and orders efficiently. The project demonstrates basic e-commerce functionality built with PHP and MySQL.
