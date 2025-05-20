@@ -45,3 +45,6 @@ This project is a dynamic **PHP-based product store** website. Users can browse 
         "twbs/bootstrap": "^5.3"
     }
 }
+```
+```console
+composer install
