@@ -1,167 +1,122 @@
+<?php include('ekler/head.php'); ?>
 
-<!DOCTYPE html>
-<html lang="tr" >
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Kayra Saraçoğlu</title>
-
-
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js" integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k=" crossorigin="anonymous"></script>
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Sticky WebGL container -->
+        <div class="sticky-container" id="stickyContainer" style="height: 60vh;">
+            <div class="webgl-section" id="webglSection" style="height: fit-content;">
+                <div class="canvas-container" id="canvasContainer" style="flex-wrap: wrap;height: 60vh;">
+                    <canvas id="space"></canvas>
 
 
+                    <div class="row justify-content-center">
+                        <div class="card card-login mx-auto mt-5" style="background:none;">
+                            <div class="blur-background"></div>
+                            <div class="card-header" style="z-index: 2;">Kayıt Ol</div>
+                            <div class="card-body" style="z-index: 2;">
+                                <form method="POST" id="register">
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <input type="text" name="username" id="inputKadiregister"
+                                                class="form-control" placeholder="Kullanıcı Adı" required autofocus>
 
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                                            <label for="inputKadiregister">Kullanıcı Adı</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-group">
+                                            <input type="password" name="pas" id="inputPasswordregister"
+                                                class="form-control" placeholder="Şifre" required>
+                                            <label for="inputPasswordregister">Şifre</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" name="register" class="btn btn-primary btn-block">Kayıt
+                                        Ol</button>
 
 
-<link href="css/style.css" rel="stylesheet">
 
-
-</head>
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-<body>
-
-<div class="footer" style="min-height: 90vh;">
-  <div class="container">
-    <div class="nav">
-      <div class="logo-container">
-     <a href="index.php"> <h3>Kayra Saraçoğlu</h3></a>
-      </div>
-    </div>
-
-    <div class="values">
-    <a href="urunler.php"> <h3>Ürünler</h3></a>
-   
-    </div>
-
-    <div class="contact">
-    <a href="iletisim.php"> <h3>İletişim</h3></a>
-     
-    </div>
-    <?php if (isset($_SESSION['username']) && isset($_SESSION['yetki'])): ?>
-                 
-
-                    <div class="social">
-
-                 
-      <h3>  <?php echo htmlspecialchars(strtoupper($_SESSION['username'])); ?></h3>
-      <ul>
-      <li><a href="sepet.php">Sepet</a></li>
-      <?php if ($_SESSION['yetki'] === 'USER'): ?>
-                        <li><a href="admin/userdashboard.php">Ayarlar</a></li>
-                    <?php elseif ($_SESSION['yetki'] === 'ADMIN' || $_SESSION['yetki'] === 'GOD'): ?>
-                        <li><a href="admin/dashboard.php">Dashboard</a></li>
-                    <?php endif; ?>
-                    <li><a href="cikis.php">Çıkış Yap</a></li>
-      </ul>
-    </div>
-
-                <?php else: ?>
-                
-                    <div class="social">
-                        <ul>
-                        <a href="login.php"><h3>Giriş Yap</h3></a>
-                        </ul>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                <?php endif; ?>
-   
-  </div>
 
-  <!-- Sticky WebGL container -->
-  <div class="sticky-container" id="stickyContainer" style="height: 60vh;">
-    <div class="webgl-section" id="webglSection" style="height: fit-content;">
-      <div class="canvas-container" id="canvasContainer" style="flex-wrap: wrap;height: 60vh;">
-        <canvas id="space"></canvas>
-   
-      
-        <div class="row justify-content-center">
-    <div class="card card-login mx-auto mt-5" style="background:none;">
-        <div class="blur-background"></div>
-        <div class="card-header" style="z-index: 2;">Kayıt Ol</div>
-        <div class="card-body" style="z-index: 2;">
-            <form method="POST" id="register">
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="text" name="username" id="inputKadiregister"  class="form-control" placeholder="Kullanıcı Adı" required autofocus>
-                        
-                        <label for="inputKadiregister">Kullanıcı Adı</label>
-                    </div>
+
+
+
                 </div>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="password" name="pas" id="inputPasswordregister"  class="form-control" placeholder="Şifre" required>
-                        <label for="inputPasswordregister">Şifre</label>
-                    </div>
-                </div>
-
-                <button type="submit" name="register" class="btn btn-primary btn-block">Kayıt Ol</button>
-
-               
-            
-            </form>
+            </div>
         </div>
+
+
+
+        <div class="dot-grid" id="dotGrid" style="width:100%"></div>
     </div>
-</div>
-
-
-
-    
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="dot-grid" id="dotGrid" style="width:100%"></div>
-</div>
-<!-- partial -->
-  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js'></script><script  src="js/script.js"></script>
+    <!-- partial -->
+    <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js'></script>
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>
 
 
 <?php
 include('vt.php');
 
-if(isset($_POST["register"])) {
-	$kullanici_var = false;
-	$username = addslashes(trim($_POST["username"]));
-	$password = addslashes(trim($_POST["pas"]));
+if (isset($_POST["register"])) {
+    $kullanici_var = false;
+    $username = trim($_POST["username"]);
+    $password = (string) trim($_POST["pas"]);
 
-	// kullanıcı adı ve şifreyi aldık tek tırnak ve sağ-sol daki boşluklardan arındırdık.
-	if(empty($username) || empty($password)) { // kullanıcı adı veya şifreden biri boş ise bilgi ver
-		echo "<br> Kullanıcı adı veya şifreniz boş.";
-		exit;
-	}
-    $password = md5($password);
-	$sql = "SELECT id, username, password FROM kullanicilar WHERE username = '$username'";
-$result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-	$kullanici_var = true;
-	
-} 
-if ($kullanici_var) {
-    echo "<br> Zaten bu kullanıcı adında başka bir kullanıcı var.";
-} else {
-    $sql = "INSERT INTO kullanicilar (username, password) VALUES ('$username', '$password')";
-    if ($conn->query($sql) === TRUE) {
-        echo "<br> Yeni kayıt eklendi!";
-        header("Location: login.php");
-    } else {
-        echo "Hata: " . $sql . "<br>" . $conn->error;
+    if (empty($username) || empty($password)) { 
+        echo "<br> Kullanıcı adı veya şifreniz boş.";
+        exit;
     }
-    
-}
+
+    if (strlen($password) < 6) {
+        echo "<br> Şifreniz en az 6 karakter olmalıdır.";
+        exit;
+    }
+
+    $sql = "SELECT * FROM kullanicilar WHERE username = :username";
+    $stmt = $connect->prepare($sql);
+    $stmt->execute([':username' => $username]);
+
+    if ($stmt->rowCount() > 0) {
+        $kullanici_var = true;
+    }
+
+    if ($kullanici_var) {
+        echo "<br> Zaten bu kullanıcı adında başka bir kullanıcı var.";
+    } else {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO kullanicilar (username, password) VALUES (:username, :password)";
+        $stmt = $connect->prepare($sql);
+
+        $sonuc = $stmt->execute([
+            ':username' => $username,
+            ':password' => $hashed_password
+        ]);
+
+        if ($sonuc) {
+            // Başarılı kayıt
+            echo "<br> Yeni kayıt eklendi!";
+            echo "<script>window.location.href='login.php';</script>";
+            // header("Location: login.php");
+        } else {
+            // Başarısız
+            echo "Kayıt sırasında hata oluştu!";
+        }
+
+        // $sql = "INSERT INTO kullanicilar (username, password) VALUES ('$username', '$password')";
+        // if ($conn->query($sql) === TRUE) {
+        //     echo "<br> Yeni kayıt eklendi!";
+        //     header("Location: login.php");
+        // } else {
+        //     echo "Hata: " . $sql . "<br>" . $conn->error;
+        // }
+
+    }
 }
 ?>
